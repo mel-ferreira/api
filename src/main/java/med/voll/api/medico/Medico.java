@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.atualizar.AtualizarDadosPessoa;
 import med.voll.api.endereco.Endereco;
 
 @Table(name = "medicos")
@@ -39,7 +40,7 @@ public class Medico {
         this.endereco = new Endereco(dados.endereco());
     }
 
-    public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dados) {
+    public void atualizarInformacoes(@Valid AtualizarDadosPessoa dados) {
 
         if(dados.nome() != null)
         {

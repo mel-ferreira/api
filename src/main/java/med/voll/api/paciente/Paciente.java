@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.atualizar.AtualizarDadosPessoa;
 import med.voll.api.endereco.Endereco;
 import med.voll.api.medico.DadosAtualizacaoMedico;
 
@@ -35,7 +36,7 @@ public class Paciente {
         this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
     }
-    public void atualizarInformacoes(@Valid DadosAtualizarPaciente dados) {
+    public void atualizarInformacoes(@Valid AtualizarDadosPessoa dados) {
 
         if(dados.nome() != null)
         {

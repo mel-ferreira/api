@@ -1,6 +1,7 @@
 package med.voll.api.medico;
 
 import jakarta.validation.constraints.NotNull;
+import med.voll.api.atualizar.AtualizarDadosPessoa;
 import med.voll.api.endereco.DadosEndereco;
 
 public record DadosAtualizacaoMedico(
@@ -10,5 +11,4 @@ public record DadosAtualizacaoMedico(
         String telefone,
         String email,
         DadosEndereco endereco
-) {
-}
+) implements AtualizarDadosPessoa {}
