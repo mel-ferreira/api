@@ -1,6 +1,6 @@
-package med.voll.api.atualizar;
+package med.voll.api.domain.atualizar;
 
-import med.voll.api.endereco.DadosEndereco;
+import med.voll.api.domain.endereco.DadosEndereco;
 
 public interface AtualizarDadosPessoa {
     String nome();
