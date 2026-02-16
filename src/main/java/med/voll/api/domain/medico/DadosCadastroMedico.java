@@ -20,6 +20,7 @@ public record DadosCadastroMedico(
                 regexp = "\\(?\\d{2}\\)?\\s?\\d{4,5}\\-?\\d{4}",
                 message = "Telefone deve estar no formato (XX) XXXXX-XXXX ou XXXXXXXXXXX"
         )
+        String telefone,
 
         @NotBlank(message = "CRM é obrigatório")
         @Pattern(regexp = "\\d{4,6}", message = "Formato do CRM é inválido")

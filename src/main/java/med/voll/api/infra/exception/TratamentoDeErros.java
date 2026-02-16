@@ -1,6 +1,5 @@
-package med.voll.api.infra;
+package med.voll.api.infra.exception;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
