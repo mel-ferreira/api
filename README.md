@@ -1,69 +1,93 @@
-# API REST - Med Voll (Spring Boot)
+# API - Projeto Spring Boot Med Voll
 
-# API REST com Spring Boot Java
+Descrição
+---------
 
-Este repositório contém uma **API REST simples construída com Spring Boot e Java**.  
-No momento, o projeto inclui apenas um endpoint de `POST` para envio de dados (por enquanto é o único recurso implementado).
+Esta é uma API de exemplo construída com Spring Boot para gerenciar recursos médicos (médicos, pacientes e autenticação). O projeto inclui migrações de banco de dados com Flyway e camadas típicas de controller, domain e infra.
 
-## 🧠 Sobre
+Principais arquivos
+-------------------
 
-Este projeto tem como objetivo demonstrar a construção de uma API REST em Java usando o framework **Spring Boot**. É útil tanto para aprendizado quanto como base para projetos futuros que precisem de um backend REST. 
+- [ApiApplication.java](src/main/java/med/voll/api/ApiApplication.java#L1) - ponto de entrada da aplicação
+- Migrations: [src/main/resources/db/migration](src/main/resources/db/migration#L1) - scripts Flyway (V1__, V2__, ...)
+- Configuração Flyway: [src/main/java/med/voll/api/config/FlywayConfig.java](src/main/java/med/voll/api/config/FlywayConfig.java#L1)
+- Controllers:
+  - [AutenticacaoController.java](src/main/java/med/voll/api/controller/AutenticacaoController.java#L1)
+  - [MedicoController.java](src/main/java/med/voll/api/controller/MedicoController.java#L1)
+  - [PacienteController.java](src/main/java/med/voll/api/controller/PacienteController.java#L1)
 
-## 📦 Tecnologias
+Requisitos
+---------
 
-- 🔹 Java  
-- 🔹 Spring Boot  
-- 🔹 Maven  
-- 🔹 (Opcional) Banco de dados configurável via Spring Data JPA
+- Java 17+ (ou conforme configurado no `pom.xml`)
+- Maven (o wrapper `mvnw` / `mvnw.cmd` já está incluído)
+- Banco de dados configurado via `application.properties` (ex.: Postgres, MySQL)
 
-## 🚀 Funcionalidades
+Configuração do banco de dados
+-----------------------------
 
-No momento a API possui:
+Edite `src/main/resources/application.properties` para apontar para o seu banco de dados. As migrações Flyway localizam-se em `src/main/resources/db/migration` e serão executadas automaticamente na inicialização (conforme configuração).
 
-- **POST** endpoint para criar um recurso (por exemplo, um objeto JSON enviado ao servidor)
+Executando a aplicação (modo desenvolvimento)
+-------------------------------------------
 
-## 🛠️ Requisitos
+No Windows (usando o wrapper incluído):
 
-Antes de rodar a aplicação, certifique-se de ter instalado em sua máquina:
+```powershell
+mvnw.cmd spring-boot:run
+```
 
-- Java 17 (ou superior)
-- Maven
-- IDE ou editor de código (VS Code, IntelliJ, etc.)
+Em Linux / macOS:
 
-## 🎯 Como Executar Localmente
+```bash
+./mvnw spring-boot:run
+```
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/mel-ferreira/api.git
+Gerar build e executar JAR
+-------------------------
 
-2. Entre no projeto:
-   ```bash
-   cd api
+```bash
+./mvnw clean package
+java -jar target/api-0.0.1-SNAPSHOT.jar
+```
 
-3. Rode a aplicação:
-   ```bash
-   mvn spring-boot:run
+Testes
+------
 
-## Com Postman
+Execute os testes com:
 
-Abra o Postman
+```bash
+./mvnw test
+```
 
-1. Crie uma nova requisição
-2. Defina o método como POST
-3. Insira a URL
-4. Envie um JSON no corpo da requisição (Body → raw → JSON)
+Endpoints principais
+-------------------
 
-🧩 Estrutura do Projeto
-api/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   └── resources/
-├── .gitignore
-├── README.md
-├── mvnw
+Os endpoints estão organizados nos controllers mencionados acima. Por exemplo:
+
+- Autenticação: implementada em AutenticacaoController
+- Cadastro/Listagem/Atualização de médicos: MedicoController
+- Cadastro/Listagem/Atualização de pacientes: PacienteController
+
+Veja também os DTOs e classes de domínio em `src/main/java/med/voll/api/domain` para os formatos de requisição/resposta.
+
+Migrações (Flyway)
+------------------
+
+Os scripts SQL estão em `src/main/resources/db/migration`. Eles são aplicados pela configuração do Flyway ao iniciar a aplicação. Caso queira aplicar manualmente, use sua ferramenta de BD preferida para executar os scripts na ordem (V1__, V2__, ...).
+
+🧩 Estrutura do Projeto api/ 
+├── src/ │ 
+   ├── main/ │ │ 
+      ├── java.med.voll.api/ │
+         │ └── config/
+         └── controller/
+         └── domain/
+         └── infra/    
+         └── resources/
+   └── test/
+└── target/  
+├── .gitignore 
+├── README.md 
+├── mvnw 
 ├── pom.xml
-
-🛠️ Próximos Passos
-
-Endpoints GET, PUT, DELETE
